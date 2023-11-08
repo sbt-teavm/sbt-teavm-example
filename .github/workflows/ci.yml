@@ -1,0 +1,22 @@
+on:
+  pull_request:
+  push:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v3
+      with:
+        java-version: 11
+        distribution: adopt
+        cache: sbt
+    - uses: bytecodealliance/actions/wasmtime/setup@4ca3c24fa6343fdf26640108786a1493d1a39907 # v1.0.0
+    - run: wasmtime --version
+    - run: node --version
+    - run: npm --version
+    - run: sbt "teavmJS/run js"
+    - run: sbt "teavmWasm/run wasm"
+    - run: sbt "teavmWasi/run wasi"
+    - run: wasmtime target/scala-2.13/teavm/wasi/main.wasm
