@@ -14,8 +14,7 @@ jobs:
         cache: sbt
     - run:
         sudo apt-get install -y gcc-13 g++-13
-        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${{ env.GCC_VER }} 100
-        sudo update-alternatives --set gcc /usr/bin/gcc-${{ env.GCC_VER }}
+        sudo update-alternatives --set gcc /usr/bin/gcc-13
         gcc --version
     - run: gcc --version
     - run: cmake --version
