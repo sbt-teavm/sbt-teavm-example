@@ -12,14 +12,11 @@ jobs:
         java-version: 11
         distribution: adopt
         cache: sbt
-    - id: install_cc
-      uses: rlalik/setup-cpp-compiler@master
-      with:
-        compiler: latest
-    - run: gcc --version
-      env:
-        CC: ${{ steps.install_cc.outputs.cc }}
-        CXX: ${{ steps.install_cc.outputs.cxx }}
+    - run:
+        sudo apt install gcc-13 g++-13
+        export CC=/usr/bin/gcc-13
+        export CXX=/usr/bin/g++-13
+        gcc --version
     - run: cmake --version
     - run: sbt "teavmC"
     - run: |
