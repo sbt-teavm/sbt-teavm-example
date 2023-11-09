@@ -12,6 +12,8 @@ jobs:
         java-version: 11
         distribution: adopt
         cache: sbt
+    - run: sudo apt update
+    - run: sudo apt install gcc-13 g++-13
     - run: gcc --version
     - run: cmake --version
     - run: sbt "teavmC"
