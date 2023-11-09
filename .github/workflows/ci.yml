@@ -13,10 +13,11 @@ jobs:
         distribution: adopt
         cache: sbt
     - run:
-        sudo apt install gcc-13 g++-13
-        export CC=/usr/bin/gcc-13
-        export CXX=/usr/bin/g++-13
+        sudo apt-get install -y gcc-13 g++-13
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${{ env.GCC_VER }} 100
+        sudo update-alternatives --set gcc /usr/bin/gcc-${{ env.GCC_VER }}
         gcc --version
+    - run: gcc --version
     - run: cmake --version
     - run: sbt "teavmC"
     - run: |
