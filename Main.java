@@ -55,6 +55,15 @@ public class Main {
     assertEquals("incorrect scale", cScale, result.scale());
   }
 
+  static void assertEquals(float x1, float x2, float delta) {
+    if(x1 == x2) {
+      System.out.println(x1 + " == " + x2);
+    } else {
+      throw new RuntimeException(x1 + " != " + x2);
+    }
+  }
+
+
   static void assertEquals(Object c, Object x1, Object x2) {
     if(x1.equals(x2)) {
       System.out.println(x1.toString() + " == " + x2.toString() + " " + c);
