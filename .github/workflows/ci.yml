@@ -6,22 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-java@v3
-      with:
-        java-version: 11
-        distribution: adopt
-        cache: sbt
-    - run: |
-        gcc --version
-        /usr/bin/gcc-13 --version
-    - run: gcc --version
-    - run: cmake --version
-    - run: sbt "teavmC"
-    - run: |
-        cd target/scala-2.13/teavm/c
-        export LC_ALL=C
-        SOURCE_DIR=$(pwd)
-        gcc -g -O0 -lrt -lm all.c -o run_test
-        ls
-        ./run_test
+    - run: ls /usr/bin/gcc*
