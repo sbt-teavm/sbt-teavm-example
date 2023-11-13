@@ -9,7 +9,7 @@ import org.teavm.classlib.PlatformDetector.*
 
 @SkipJVM
 @RunWith(classOf[TeaVMTestRunner])
-class B {
+class C {
 
   private def hoge(): String = Seq(
     "class" -> this.getClass.getName,
@@ -26,14 +26,7 @@ class B {
 
   @Test
   def test1(): Unit = {
-    println("properties = \n" + sys.props.filter(_._1.contains("teavm")).toList.sorted.mkString("\n"))
-    println(
-      "Scala test " + System.getProperty("os.name")
-    )
     println(hoge())
-    val x = 2
-    val y = 3
-    assertEquals(5, x + y)
   }
 }
 

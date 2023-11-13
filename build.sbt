@@ -11,17 +11,35 @@ libraryDependencies ++= Seq(
   "org.teavm" % "teavm-junit" % "0.9.0" % Test,
   "com.github.sbt" % "junit-interface" % "0.13.3" % Test,
   "org.slf4j" % "slf4j-nop" % "1.7.36" % Test,
+//  "org.slf4j" % "slf4j-simple" % "1.7.36" % Test,
 )
 
 Test / testOptions += Tests.Argument(
   TestFrameworks.JUnit,
-  "-q",
   "-v",
 )
 
 Test / fork := true
 
 /*
+Test / testOptions += Tests.Cleanup{(classLoader: ClassLoader) =>
+  classLoader.loadClass("java.lang.System").getDeclaredField("out").get(null).asInstanceOf[java.io.PrintStream].flush()
+}
+
+Test / forkOptions ~= (
+  _.withOutputStrategy(
+    OutputStrategy.StdoutOutput
+  )
+)
+
+Test / forkOptions ~= (
+  _.withOutputStrategy(
+    OutputStrategy.CustomOutput(
+      new java.io.OutputStream{ override def write(x: Int) = System.out.write(x) }
+    )
+  )
+)
+
 Test / forkOptions ~= (
   _.withOutputStrategy(
     OutputStrategy.CustomOutput(
@@ -30,12 +48,6 @@ Test / forkOptions ~= (
   )
 )
 */
-
-Test / forkOptions ~= (
-  _.withOutputStrategy(
-    OutputStrategy.StdoutOutput
-  )
-)
 
 def defineTestTask(taskK: TaskKey[Unit], propertyKey: String) = {
   taskK := {
