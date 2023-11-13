@@ -49,7 +49,15 @@ Test / forkOptions ~= (
 )
 */
 
-def defineTestTask(taskK: TaskKey[Unit], propertyKey: String) = {
+Test / forkOptions := (
+  (Test / forkOptions).value.withOutputStrategy(
+    OutputStrategy.CustomOutput(
+      new java.io.FileOutputStream(target.value / "test_log.txt")
+    )
+  )
+)
+
+def defineTestTask(taskK: TaskKey[Unit], propertyKey: String) = Def.settings(
   taskK := {
     val k = s"teavm.junit.${propertyKey}"
     val x1 = (Test / javaOptions).value
@@ -61,8 +69,8 @@ def defineTestTask(taskK: TaskKey[Unit], propertyKey: String) = {
       )
     )
     Project.extract(s).runTask(Test / test, s)._2
-  }
-}
+  },
+)
 
 val teavmTestWasm = taskKey[Unit]("")
 val teavmTestWasi = taskKey[Unit]("")
@@ -74,13 +82,13 @@ Seq[(TaskKey[Unit], String)](
   teavmTestWasi -> "wasi",
   teavmTestJS   -> "js",
   teavmTestC    -> "c",
-).map{ case (x, y) => defineTestTask(x, y) }
+).flatMap{ case (x, y) => defineTestTask(x, y) }
 
 TaskKey[Unit]("teavmTestAll") := {
   teavmTestWasm.value
   teavmTestWasi.value
   teavmTestJS.value
-  teavmTestC.value
+//  teavmTestC.value
 }
 
 

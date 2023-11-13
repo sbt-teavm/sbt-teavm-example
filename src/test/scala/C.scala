@@ -12,6 +12,7 @@ import org.teavm.classlib.PlatformDetector.*
 class C {
 
   private def hoge(): String = Seq(
+    "os" -> System.getProperty("os.name"),
     "class" -> this.getClass.getName,
     "isWebAssembly" -> isWebAssembly(),
     "isJavaScript" -> isJavaScript(),

@@ -12,6 +12,7 @@ import org.teavm.classlib.PlatformDetector.*
 class B {
 
   private def hoge(): String = Seq(
+    "os" -> System.getProperty("os.name"),
     "class" -> this.getClass.getName,
     "isWebAssembly" -> isWebAssembly(),
     "isJavaScript" -> isJavaScript(),
@@ -26,10 +27,6 @@ class B {
 
   @Test
   def test1(): Unit = {
-    println("properties = \n" + sys.props.filter(_._1.contains("teavm")).toList.sorted.mkString("\n"))
-    println(
-      "Scala test " + System.getProperty("os.name")
-    )
     println(hoge())
     val x = 2
     val y = 3
