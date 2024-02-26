@@ -12,7 +12,7 @@ jobs:
         java-version: 11
         distribution: adopt
         cache: sbt
-    - uses: bytecodealliance/actions/wasmtime/setup@4ca3c24fa6343fdf26640108786a1493d1a39907 # v1.0.0
+    - uses: bytecodealliance/actions/wasmtime/setup@d742827944dcb656569399571a8a45261b5089f6 # v1.1.0
     - run: wasmtime --version
     - run: node --version
     - run: npm --version
