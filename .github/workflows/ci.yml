@@ -13,7 +13,7 @@ jobs:
         distribution: adopt
         cache: sbt
     - uses: sbt/setup-sbt@v1    
-    - uses: bytecodealliance/actions/wasmtime/setup@d742827944dcb656569399571a8a45261b5089f6 # v1.1.0
+    - uses: bytecodealliance/actions/wasmtime/setup@3b93676295fd6f7eaa7af2c2785539e052fa8349 # v1.1.1
     - run: wasmtime --version
     - run: node --version
     - run: npm --version
