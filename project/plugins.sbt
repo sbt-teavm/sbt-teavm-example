@@ -1,1 +1,1 @@
-addSbtPlugin("io.github.sbt-teavm" % "sbt-teavm" % "0.3.3")
+addSbtPlugin("io.github.sbt-teavm" % "sbt-teavm" % "0.4.0")
