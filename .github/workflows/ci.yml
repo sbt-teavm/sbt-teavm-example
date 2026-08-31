@@ -10,7 +10,7 @@ jobs:
     - uses: actions/setup-java@v5
       with:
         java-version: 17
-        distribution: adopt
+        distribution: temurin
         cache: sbt
     - uses: sbt/setup-sbt@v1    
     - run: node --version
